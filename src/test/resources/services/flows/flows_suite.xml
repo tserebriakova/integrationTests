@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="STAGE REGRESSION TEST SUITE">
+    <test name="ONBOARDING">
+        <classes>
+            <class name="tests.endpoints.flows.positive.ExistingClientFlowTest"/>
+            <class name="tests.endpoints.flows.positive.ExistingUserRecoveryTest"/>
+            <class name="tests.endpoints.flows.positive.ExistingUsersStepBackTest"/>
+            <class name="tests.endpoints.flows.positive.NewUserFlowTest"/>
+            <class name="tests.endpoints.flows.negative.LoginWrongToken"/>
+            <class name="tests.endpoints.flows.negative.CardValidationTest"/>
+            <class name="tests.endpoints.flows.negative.ExistingUserWithInvalidDataStepsTest"/>
+            <class name="tests.endpoints.flows.negative.OpenInvalidOrderStepTest"/>
+            <class name="tests.endpoints.flows.negative.OtpValidationTest"/>
+            <class name="tests.endpoints.flows.negative.PhoneNumberValidationTest"/>
+            <class name="tests.endpoints.flows.negative.PinValidationTest"/>
+        </classes>
+    </test>
+</suite>

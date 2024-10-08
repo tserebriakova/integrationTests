@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="PRODUCTION SMOKE TEST SUITE">
+    <test name="ONBOARDING">
+        <classes>
+            <class name="tests.endpoints.flows.positive.ExistingClientFlowTest"/>
+            <class name="tests.endpoints.flows.positive.ExistingUserRecoveryTest"/>
+            <class name="tests.endpoints.flows.negative.ExistingUserWithInvalidDataStepsTest"/>
+
+        </classes>
+    </test>
+    <test name="P2P">
+        <groups>
+            <run>
+                <include name="auth-client" />
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.endpoints.p2p.uapi.P2PProdTest"/>
+            <class name="tests.endpoints.p2p.uapi.P2p3DsTest"/>
+        </classes>
+    </test>
+    <test name="MOBILE-BACKEND">
+        <groups>
+            <run>
+                <include name="auth-client" />
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.endpoints.mbackend.me.MeTest"/>
+            <class name="tests.endpoints.mbackend.cards.CardsTest"/>
+            <class name="tests.endpoints.mbackend.payments.PaymentsOptionsTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.limits.LimitsTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.transactions.TransactionsTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.requisites.RequisitesTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.pancvv.PanCvvTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.options.OptionsTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.design.DesignTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.security.SecurityTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.pin.PinTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.activity.category.CategoryTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.activity.merchant.MerchantTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.pan.PanTest"/>
+        </classes>
+    </test>
+    <test name="RECEIPT">
+        <groups>
+            <run>
+                <include name="auth-client" />
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.endpoints.receipt.ReceiptTest"/>
+        </classes>
+    </test>
+    <test name="AUTH">
+        <groups>
+            <run>
+                <include name="auth-client" />
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.endpoints.auth.RefreshTokenTest"/>
+            <class name="tests.endpoints.auth.AccountPinTest"/>
+        </classes>
+    </test>
+</suite>

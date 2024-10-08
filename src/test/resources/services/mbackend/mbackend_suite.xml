@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="STAGE REGRESSION TEST SUITE">
+    <test name="MOBILE-BACKEND Service">
+        <groups>
+            <run>
+                <include name="auth-client"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.endpoints.mbackend.me.MeTest"/>
+            <class name="tests.endpoints.mbackend.payments.PaymentsOptionsTest"/>
+            <class name="tests.endpoints.mbackend.sms.SwitchSmsTest"/>
+            <class name="tests.endpoints.mbackend.cards.CardsTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.activity.category.CategoryTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.activity.merchant.MerchantTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.cvv.CvvTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.design.DesignTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.limits.LimitsTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.options.OptionsTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.pan.PanTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.pancvv.PanCvvTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.pin.PinTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.requisites.RequisitesTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.security.SecurityTest"/>
+            <class name="tests.endpoints.mbackend.cards.card.transactions.TransactionsTest"/>
+        </classes>
+    </test>
+</suite>

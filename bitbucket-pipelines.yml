@@ -1,0 +1,31 @@
+image: gradle:7.2.0-jdk11
+
+pipelines:
+  default:
+    - step:
+        name: Testing STAGE
+        deployment: STAGE
+        script:
+          - chmod +x script_stage.sh
+          - apt-get update
+          - apt-get install zip
+          - wget https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_386 -O ./allurectl
+          - chmod +x ./allurectl
+          - gradle clean test -Denv=dev -Pp2p_stage allureReport
+          - ./allurectl upload --launch-name "STAGE Test Launch" /opt/atlassian/pipelines/agent/build/build/allure-results
+#          - ./script_stage.sh
+
+    - step:
+        name: Testing PROD
+        deployment: PROD
+        script:
+          - chmod +x script_prod.sh
+          - apt-get update
+          - apt-get install zip
+          - wget https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_386 -O ./allurectl
+          - chmod +x ./allurectl
+          - gradle clean test -Denv=prod3 -Pp2p_prod allureReport
+          - ./allurectl upload --launch-name "PROD Test Launch" /opt/atlassian/pipelines/agent/build/build/allure-results
+#          - ./script_prod.sh
+
+

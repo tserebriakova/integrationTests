@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="STAGE REGRESSION TEST SUITE">
+
+    <test name="Simple Payments">
+        <groups>
+            <run>
+                <include name="auth-client" />
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.endpoints.smpay.SmPayTest"/>
+        </classes>
+    </test>
+
+</suite>
+

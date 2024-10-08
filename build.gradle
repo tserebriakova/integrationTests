@@ -1,0 +1,75 @@
+buildscript {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "io.qameta.allure.gradle.allure:allure-plugin:2.9.6"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'io.qameta.allure'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    testCompile
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    testCompileOnly 'org.projectlombok:lombok:1.18.20'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
+    implementation group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: '1.68'
+    implementation group: 'org.slf4j', name: 'slf4j-jdk14', version: '1.7.30'
+    implementation group: 'org.aeonbits.owner', name: 'owner', version: '1.0.12'
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '4.2.0'
+    testImplementation group: 'org.testng', name: 'testng', version: '7.4.0'
+    testImplementation group: 'io.qameta.allure', name: 'allure-testng', version: '2.15.0'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+    implementation group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.5'
+    implementation group: 'commons-codec', name: 'commons-codec', version: '1.15'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+    implementation group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.24'
+
+}
+
+allure {
+    report {
+        reportDir.set(project.reporting.baseDirectory.dir("$buildDir/allure-report"))
+        useTestNG { version = '2.0-BETA10' }
+    }
+}
+
+test {
+    ignoreFailures = true
+    useTestNG {
+        setParallel('methods')
+        setThreadCount(1)
+        useDefaultListeners = true
+        listeners << "helpers.AnnotationTransformer"
+        if (project.hasProperty('prod_regression')) { suites './src/test/resources/regression/prod/prod_regress_suite.xml' }
+        if (project.hasProperty('stage_regression')) { suites './src/test/resources/regression/stage/stage_regress_suite.xml' }
+        if (project.hasProperty('service_auth')) { suites './src/test/resources/services/auth/auth_suite.xml' }
+        if (project.hasProperty('service_flows')) { suites './src/test/resources/services/flows/flows_suite.xml' }
+        if (project.hasProperty('service_mbackend')) { suites './src/test/resources/services/mbackend/mbackend_suite.xml' }
+        if (project.hasProperty('service_p2p')) { suites './src/test/resources/services/p2p/p2p_suite.xml' }
+        if (project.hasProperty('service_smpay')) { suites './src/test/resources/services/smpay/p2phone_suite.xml' }
+        if (project.hasProperty('service_receipt')) { suites './src/test/resources/services/receipt/receipt_suite.xml' }
+        if (project.hasProperty('p2p_stage')) { suites './src/test/resources/stage_suite.xml' }
+        if (project.hasProperty('p2p_prod')) { suites './src/test/resources/prod_suite.xml' }
+        if (project.hasProperty('test')) { suites './src/test/resources/stage_suite.xml' }
+
+
+    }
+}
+
+tasks.withType(Test){
+
+    systemProperty 'env', System.getProperty('env', 'env')
+
+}

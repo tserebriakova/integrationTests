@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="STAGE REGRESSION TEST SUITE">
+    <test name="P2P SUITE">
+        <groups>
+            <run>
+                <include name="auth-client"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.endpoints.flows.positive.ExistingUsersStepBackTest"/>
+            <class name="tests.endpoints.p2p.uapi.P2PCancelTest"/>
+            <class name="tests.endpoints.p2p.uapi.P2PTest"/>
+            <class name="tests.endpoints.p2p.uapi.P2p3DsTest"/>
+        </classes>
+    </test>
+</suite>
